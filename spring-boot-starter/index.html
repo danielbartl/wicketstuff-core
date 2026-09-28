@@ -387,6 +387,20 @@
 
 		@media (max-width: 860px) { .compat { grid-template-columns: repeat(2, 1fr); } }
 
+		.roadmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; counter-reset: road; }
+		.roadmap .card { padding: 26px; }
+		.roadmap .when {
+			display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+			padding: 4px 9px; border-radius: 999px; background: var(--bg-soft); color: var(--text-faint); margin-bottom: 14px;
+		}
+		.roadmap .card:first-child .when { background: var(--wicket-soft); color: var(--wicket-text); }
+		.roadmap .card:last-child .when { background: var(--spring-soft); color: var(--spring); }
+		.roadmap h3::before { counter-increment: road; content: counter(road) ". "; color: var(--text-faint); }
+		.roadmap p { color: var(--text-soft); margin: 0; font-size: .96rem; }
+		.roadmap-note { margin-top: 22px; color: var(--text-soft); }
+
+		@media (max-width: 860px) { .roadmap { grid-template-columns: 1fr; } }
+
 		footer { padding: 40px 0 56px; color: var(--text-faint); font-size: .92rem; border-top: 1px solid var(--border); }
 		footer .wrap { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; justify-content: space-between; }
 		footer nav { display: flex; flex-wrap: wrap; gap: 8px 22px; }
@@ -410,6 +424,7 @@
 			<a href="#features">Features</a>
 			<a href="#configuration">Configuration</a>
 			<a href="#devtools">DevTools</a>
+			<a href="#roadmap">Roadmap</a>
 			<a class="keep" href="https://github.com/wicketstuff/core/tree/master/wicketstuff-spring-boot-starter-parent">GitHub</a>
 			<button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
 				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
@@ -486,6 +501,11 @@
 					<code>@SpringBean</code> works. None of it is hard, but it is the first thing standing
 					between you and a running Wicket page, and it is easy to get subtly wrong.
 				</p>
+				<p style="margin-top: 14px">
+					The goal goes one step further: Apache Wicket selectable on
+					<a href="https://start.spring.io">start.spring.io</a>, the way Vaadin already is, so that a
+					new Wicket project is one click away. <a href="#roadmap">See the roadmap</a>.
+				</p>
 			</div>
 			<div class="why">
 				<div class="card">
@@ -511,8 +531,8 @@
 					datastores and more)? Have a look at
 					<a href="https://github.com/MarcGiffing/wicket-spring-boot">MarcGiffing/wicket-spring-boot</a>.
 					Both solve the same problem with opposite philosophies: pick that one for breadth, this one
-					to start from the smallest thing that works. Being part of wicketstuff also means there is
-					no separate compatibility matrix: use the starter version matching your Wicket version.
+					to start from the smallest thing that works. Being part of wicketstuff also means the
+					starter is released with it: use the starter version matching your Wicket version.
 				</p>
 			</div>
 		</div>
@@ -918,6 +938,42 @@ server.tomcat.basedir=target/tomcat</code></pre>
 				<div class="card"><div class="label">Spring Framework</div><div class="value">7.0</div></div>
 				<div class="card"><div class="label">Java</div><div class="value">17+</div></div>
 			</div>
+		</div>
+	</section>
+
+	<!-- ============ roadmap ============ -->
+	<section id="roadmap">
+		<div class="wrap">
+			<div class="section-head">
+				<div class="kicker">Roadmap</div>
+				<h2>Next stop: start.spring.io.</h2>
+				<p>
+					The aim is a Wicket checkbox on Spring Initializr, right next to Vaadin, so that a new Wicket
+					project is one click away. The Initializr only offers released versions, so the way there has
+					three steps.
+				</p>
+			</div>
+			<div class="roadmap">
+				<div class="card">
+					<span class="when">Now</span>
+					<h3>Merge into wicketstuff</h3>
+					<p>The starter becomes a module of <code>wicketstuff-core</code>, built and tested with every change.</p>
+				</div>
+				<div class="card">
+					<span class="when">Next release</span>
+					<h3>Publish to Maven Central</h3>
+					<p>It ships with the next wicketstuff release, so there is a real version for the Initializr to reference, never a snapshot.</p>
+				</div>
+				<div class="card">
+					<span class="when">Then</span>
+					<h3>Request the listing</h3>
+					<p>The entry is already prepared in the README; it is submitted to the Spring Initializr team and kept current for every new Spring Boot line.</p>
+				</div>
+			</div>
+			<p class="roadmap-note">
+				Until then, generate a Spring Boot project as usual and add the starter by hand:
+				it is <a href="#top">the single dependency</a> at the top of this page.
+			</p>
 		</div>
 	</section>
 
